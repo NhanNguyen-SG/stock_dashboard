@@ -17,7 +17,9 @@ def init_db():
             close REAL,
             volume INTEGER,
             ticker TEXT,
-            fetched_at TEXT
+            fetched_at TEXT,
+            rsi REAL,      -- New column
+            ma_20 REAL     -- New column
         )
     ''')
     conn.commit()
