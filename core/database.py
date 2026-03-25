@@ -7,19 +7,14 @@ DB_PATH = Path('data/stocks.db')
 def init_db():
     DB_PATH.parent.mkdir(exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
+    # Added rsi and ma_20 columns to the table
     conn.execute('''
         CREATE TABLE IF NOT EXISTS prices (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             datetime TEXT,
-            open REAL,
-            high REAL,
-            low REAL,
-            close REAL,
-            volume INTEGER,
-            ticker TEXT,
-            fetched_at TEXT,
-            rsi REAL,      -- New column
-            ma_20 REAL     -- New column
+            open REAL, high REAL, low REAL, close REAL,
+            volume INTEGER, ticker TEXT, fetched_at TEXT,
+            rsi REAL, ma_20 REAL
         )
     ''')
     conn.commit()
