@@ -1,56 +1,31 @@
-📈 Real-Time Stock Anomaly DashboardThis is a professional data analytics project that monitors live stock market data, detects price anomalies using Machine Learning, and sends automated email alerts.
+# 📟 AI Predictive Trading Terminal
+> **Live Demo:** [https://stockdashboard-jg44wj4ynsqknmbv8kaxyb.streamlit.app/](https://stockdashboard-jg44wj4ynsqknmbv8kaxyb.streamlit.app/)
 
-🚀 https://stockdashboard-jg44wj4ynsqknmbv8kaxyb.streamlit.app/
+A real-time financial analytics platform built with **Python** and **Unsupervised Machine Learning**. This terminal uses a high-contrast cinematic aesthetic to visualize market volatility and detect price anomalies in real-time.
 
-🛠️ Tech Stack
-- Language: Python
-- Framework: Streamlit (Web Dashboard)
-- Machine Learning: Scikit-Learn (Isolation Forest for Anomaly Detection)
-- Database: SQLite (Local Data Storage)
-- APIs: Yahoo Finance (yfinance) for real-time market data
-- Alerts: Gmail SMTP (Automated Email System) 
+## 🚀 Key Features (v2.0)
+* **Multi-Stock Monitoring:** Track up to 5 assets simultaneously (Stocks, Crypto, Forex).
+* **Technical Indicator Engine:** Manual implementation of **RSI (14)** and **SMA (20)** to bypass library dependencies and show raw data logic.
+* **AI Anomaly Detection:** Uses an **Isolation Forest** model to identify "shocks" in price and volume.
+* **Cinematic UI:** Custom CSS implementation for a high-contrast "Wong Kar-wai" inspired dark mode.
+* **Automated Alerting:** Integrated with **Gmail SMTP** to send instant notifications when the AI flags a risk.
 
-✨ Key Features
-- Live Ingestion: Fetches the latest stock prices every minute.
-- AI Detection: Uses an Unsupervised ML model to identify "strange" price or volume movements.
-- Visualized Data: Interactive charts showing stock trends with anomalies marked in red.Instant
-- Alerts: Sends a notification to the user's email as soon as an anomaly is detected.
+## 🛠️ Tech Stack
+* **Language:** Python 3.9
+* **ML Model:** Scikit-Learn (Isolation Forest)
+* **Data:** yfinance API
+* **Database:** SQLite3 (Local persistence)
+* **UI/UX:** Streamlit & Plotly (Custom CSS)
 
-📁 Project StructurePlaintextstock_dashboard/
-```
+## 📂 Project Structure
+```text
 stock_dashboard/
 ├── app/
-│   ├── app.py          # Main Dashboard Code
-│   └── pages/          # Multi-page setup
+│   ├── app.py              # Main Dashboard (Cinematic UI)
+│   └── pages/              # 01_Live_Chart & 02_Alert_Logs
 ├── core/
-│   ├── data_fetcher.py # YFinance logic
-│   ├── database.py     # SQLite logic
-│   ├── detector.py     # ML Anomaly model
-│   └── alerter.py      # Email SMTP logic
-├── data/               # Local database storage
-└── requirements.txt    # Library dependencies
-```
-
-🔍 Technical Deep Dive
-
-1. Data Engineering & Ingestion
-Real-Time Pipeline: The system uses yfinance to pull 1-minute interval data, ensuring the dashboard reflects the most current market conditions.
-Persistent Storage: Data is stored in a local SQLite database. This allows the app to maintain historical context for the Machine Learning model even if the app restarts.
-
-2. Machine Learning Model (Anomaly Detection)
-Algorithm: The project implements Isolation Forest, an unsupervised learning algorithm perfect for detecting outliers in financial data.
-Feature Engineering: The model analyzes Price Change and Volume Change percentages to find "shocks" in the market rather than just high prices.
-Scoring: Each data point receives an anomaly_score. If the score falls below a specific threshold (contamination), it is flagged as a risk.
-
-3. Automated Alert System
-SMTP Integration: Using Python’s smtplib, the system connects to a Gmail SMTP server to send high-priority alerts.
-Logic: An alert is only triggered when the latest data point is flagged as an anomaly, preventing "spam" and ensuring the user only sees critical movements.
-
-4. Cloud Deployment
-CI/CD: The project is integrated with GitHub, allowing for continuous deployment to Streamlit Cloud.
-Security: Sensitive credentials (email/password) are managed using Streamlit Secrets, ensuring no private data is ever exposed in the public code.
-
-📈 Business Value
-Risk Mitigation: Helps traders identify "Flash Crashes" or unusual "Pump and Dump" patterns.
-
-Scalability: The modular code structure (Fetcher -> Database -> Detector) allows for adding more stocks or different ML models easily.
+│   ├── data_fetcher.py     # Manual RSI & SMA Math
+│   ├── database.py         # SQLite Schema Management
+│   ├── detector.py         # ML Anomaly Model
+│   └── alerter.py          # SMTP Email logic
+└── requirements.txt        # Dependencies
